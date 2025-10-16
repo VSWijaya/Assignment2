@@ -1,14 +1,19 @@
 {
   "$schema": "https://vega.github.io/schema/vega-lite/v5.json",
   "description": "Choropleth map of Australian GCCSA regions using an Albers Equal Area projection.",
-  "width": 800,
-  "height": 600,
+  "title": {
+    "text": "Multiple Job-Holding Rate by Australian Region",
+    "fontSize": 16,
+    "anchor": "middle"
+  },
+  "width": 600,
+  "height": 400,
   "projection": {
     "type": "albers",
     "parallels": [-18, -36],
     "rotate": [-132, 0],
     "center": [0, -27],
-    "scale": 1200
+    "scale": 600
   },
   "data": {
     "url": "https://raw.githubusercontent.com/cartdeco/Australia-json-data/master/ABS_GCCSA_2011.json",
@@ -26,23 +31,55 @@
       }
     }
   ],
-  "mark": {
-    "type": "geoshape",
-    "stroke": "black",
-    "strokeWidth": 0.9
-  },
-  "encoding": {
-    "color": {
-      "field": "Rate",
-      "type": "quantitative",
-      "scale": {"scheme": "oranges"},
-      "legend": {"title": "Rate (%)"}
+  "layer": [
+    {
+      "mark": {
+        "type": "geoshape",
+        "stroke": "black",
+        "strokeWidth": 0.9
+      },
+      "encoding": {
+        "color": {
+          "field": "Rate",
+          "type": "quantitative",
+          "scale": {"scheme": "oranges"},
+          "legend": {"title": "Rate (%)"}
+        },
+        "tooltip": [
+          {"field": "properties.GCC_NAME11", "type": "nominal", "title": "Region"},
+          {"field": "Rate", "type": "quantitative", "format": ".1f", "title": "Rate (%)"}
+        ]
+      }
     },
-    "tooltip": [
-      {"field": "properties.GCC_NAME11", "type": "nominal", "title": "Region"},
-      {"field": "Rate", "type": "quantitative", "format": ".1f", "title": "Rate (%)"}
-    ]
-  },
+    {
+      "data": {
+        "values": [
+          {"city": "Darwin", "lat": -12.46, "lon": 130.84},
+          {"city": "Perth", "lat": -31.95, "lon": 115.86},
+          {"city": "Adelaide", "lat": -34.93, "lon": 138.60},
+          {"city": "Sydney", "lat": -33.87, "lon": 151.21},
+          {"city": "Brisbane", "lat": -27.47, "lon": 153.03},
+          {"city": "Canberra", "lat": -35.28, "lon": 149.13},
+          {"city": "Melbourne", "lat": -37.81, "lon": 144.96},
+          {"city": "Hobart", "lat": -42.88, "lon": 147.33}
+        ]
+      },
+      "mark": {
+        "type": "text",
+        "align": "left",
+        "baseline": "middle",
+        "fontSize": 11,
+        "fontWeight": "bold",
+        "color": "black",
+        "dx": 5
+      },
+      "encoding": {
+        "text": {"field": "city", "type": "nominal"},
+        "latitude": {"field": "lat", "type": "quantitative"},
+        "longitude": {"field": "lon", "type": "quantitative"}
+      }
+    }
+  ],
   "config": {
     "view": {"stroke": "transparent"},
     "mark": {"tooltip": true}

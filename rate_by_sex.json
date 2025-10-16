@@ -1,0 +1,51 @@
+{
+  "$schema": "https://vega.github.io/schema/vega-lite/v5.json",
+  "description": "Line graph showing male vs female rates over time with custom colors and title",
+  "title": {
+    "text": "Rates of Multiple Job-Holders by Sex (1994-2025)",
+    "subtitle": "Source: ABS Labour Force Survey",
+    "fontSize": 18,
+    "anchor": "middle"
+  },
+  "data": {
+    "url": "https://raw.githubusercontent.com/VSWijaya/Assignment2/refs/heads/main/job_by_sex.csv",
+    "format": {
+      "type": "csv",
+      "parse": {"Date": "utc:%b-%y"}
+    }
+  },
+  "transform": [
+    {"fold": ["Males", "Females"], "as": ["Gender", "Rate"]}
+  ],
+  "mark": {"type": "line", "point": true},
+  "encoding": {
+    "x": {
+      "field": "Date",
+      "type": "temporal",
+      "title": "Date",
+      "axis": {"format": "%b %Y"}
+    },
+    "y": {
+      "field": "Rate",
+      "type": "quantitative",
+      "title": "Rate (%)"
+    },
+    "color": {
+      "field": "Gender",
+      "type": "nominal",
+      "title": "Gender",
+      "legend": {"orient": "bottom"},
+      "scale": {
+        "domain": ["Males", "Females"],
+        "range": ["#1f77b4", "#e377c2"]
+      }
+    },
+    "tooltip": [
+      {"field": "Date", "type": "temporal", "title": "Date"},
+      {"field": "Gender", "type": "nominal"},
+      {"field": "Rate", "type": "quantitative"}
+    ]
+  },
+  "width": 600,
+  "height": 300
+}

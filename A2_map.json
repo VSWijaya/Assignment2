@@ -1,0 +1,50 @@
+{
+  "$schema": "https://vega.github.io/schema/vega-lite/v5.json",
+  "description": "Choropleth map of Australian GCCSA regions using an Albers Equal Area projection.",
+  "width": 800,
+  "height": 600,
+  "projection": {
+    "type": "albers",
+    "parallels": [-18, -36],
+    "rotate": [-132, 0],
+    "center": [0, -27],
+    "scale": 1200
+  },
+  "data": {
+    "url": "https://raw.githubusercontent.com/cartdeco/Australia-json-data/master/ABS_GCCSA_2011.json",
+    "format": {"type": "topojson", "feature": "ABS_GCCSA_2011"}
+  },
+  "transform": [
+    {
+      "lookup": "properties.GCC_NAME11",
+      "from": {
+        "data": {
+          "url": "https://raw.githubusercontent.com/VSWijaya/FIT3179-HW9/main/data.csv"
+        },
+        "key": "Region",
+        "fields": ["Rate"]
+      }
+    }
+  ],
+  "mark": {
+    "type": "geoshape",
+    "stroke": "black",
+    "strokeWidth": 0.9
+  },
+  "encoding": {
+    "color": {
+      "field": "Rate",
+      "type": "quantitative",
+      "scale": {"scheme": "oranges"},
+      "legend": {"title": "Rate (%)"}
+    },
+    "tooltip": [
+      {"field": "properties.GCC_NAME11", "type": "nominal", "title": "Region"},
+      {"field": "Rate", "type": "quantitative", "format": ".1f", "title": "Rate (%)"}
+    ]
+  },
+  "config": {
+    "view": {"stroke": "transparent"},
+    "mark": {"tooltip": true}
+  }
+}

@@ -1,0 +1,32 @@
+{
+  "$schema": "https://vega.github.io/schema/vega-lite/v5.json",
+  "description": "Multiple job-holding rate by industry",
+  "title": {
+    "text": "Multiple Job-Holding Rate by Industry",
+    "fontSize": 16,
+    "anchor": "start"
+  },
+  "data": {
+    "url": "https://raw.githubusercontent.com/VSWijaya/Assignment2/refs/heads/main/job_by_ind.csv"
+  },
+  "width": 600,
+  "height": 500,
+  "mark": {"type": "bar", "color": "darkblue"},
+  "encoding": {
+    "y": {
+      "field": "Industry",
+      "type": "nominal",
+      "sort": "-x",
+      "title": "Industry"
+    },
+    "x": {
+      "field": "Rate",
+      "type": "quantitative",
+      "title": "Multiple Job-Holding Rate (%)"
+    },
+    "tooltip": [
+      {"field": "Industry", "type": "nominal", "title": "Industry"},
+      {"field": "Rate", "type": "quantitative", "format": ".1f", "title": "Rate (%)"}
+    ]
+  }
+}

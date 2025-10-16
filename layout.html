@@ -1,0 +1,75 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width,initial-scale=1" />
+  <title>Multiple Job-Holders in Australia</title>
+  <link rel="stylesheet" href="https://unpkg.com/purecss@2.0.6/build/pure-min.css">
+  <link rel="stylesheet" href="style.css">
+  <script src="https://cdn.jsdelivr.net/npm/vega@5"></script>
+  <script src="https://cdn.jsdelivr.net/npm/vega-lite@5"></script>
+  <script src="https://cdn.jsdelivr.net/npm/vega-embed@6"></script>
+</head>
+<body>
+  <div class="page">
+    <header class="site-header">
+      <div class="pure-g">
+        <div class="pure-u-1 pure-u-md-3-4">
+          <h1 class="title">Multiple Job-Holders in Australia</h1>
+        </div>
+      </div>
+    </header>
+    <main class="content pure-g">
+      <section class="pure-u-1 intro" >
+        <h2>Overview</h2>
+        <p>More Australians than ever are holding multiple jobs. This project visualises national and state-level data to show how multiple job-holding has evolved over time, and how it varies by gender and industry. The goal is to highlight key insights about Australia's changing workforce.</p>
+      </section>
+      <section class="pure-u-1">
+        <h2>Trend Over Time</h2>
+        <div id="time-series" class="viz-placeholder" role="img" aria-label="Time series chart of multiple job-holders"></div>
+        <script type="text/javascript">
+          var spec = 'https://raw.githubusercontent.com/VSWijaya/Assignment2/refs/heads/main/job_rate_pop.json';
+          vegaEmbed('#time-series', spec, {"actions": true});
+        </script>
+        <p>The rate remained relatively stable between 1994 and 2019, fluctuating around 5.5-6%, before a large decline in June 2020 caused by the Covid 19 pandemic. Since then, the rate has climbed notably.</p>
+      </section>
+      <section class="pure-u-1">
+        <h2>Multiple Job-Holding by Sex</h2>
+        <div class="pure-g">
+          <div class="pure-u-1 pure-u-md-1-2">
+            <div id="rate-by-sex" class="viz-placeholder" role="img" aria-label="Multiple job-holding rate by gender" style="min-height: 300px;"></div>
+            <script type="text/javascript">
+              var spec = 'https://raw.githubusercontent.com/VSWijaya/Assignment2/refs/heads/main/rate_by_sex.json';
+              vegaEmbed('#rate-by-sex', spec, {"actions": true});
+            </script>
+          </div>
+          <div class="pure-u-1 pure-u-md-1-2">
+            <p>Women consistently hold multiple jobs at higher rates than men throughout the entire 30-year period.Females average around 6.5-7%, while males stay closer to 4.5-5%. </p>
+          </div>
+        </div>
+      </section>
+      <section class="pure-u-1 pure-u-md-2-3">
+        <h2>Map: Prevalence by State</h2>
+        <div id="map" class="viz-placeholder" role="img" aria-label="Map showing prevalence by state"></div>
+        <script type="text/javascript">
+          var spec = 'https://raw.githubusercontent.com/VSWijaya/Assignment2/refs/heads/main/A2_map.json';
+          vegaEmbed('#map', spec, {"actions": true});
+        </script>
+        <p>The map above shows the regional variation in job-holding rates across territories. In June 2025, the multiple job-holding rate was highest in Greater Hobart (capital city) and Tasmania (state) and lowest in Sydney and Queensland.</p>
+      </section>
+      <section class="pure-u-1">
+        <h2>Multiple Job-Holding by Industry</h2>
+        <div id="job-by-industry" class="viz-placeholder" role="img" aria-label="Multiple job-holding rate by industry"></div>
+        <script type="text/javascript">
+          var spec = 'https://raw.githubusercontent.com/VSWijaya/Assignment2/refs/heads/main/Job_by_industry.json';
+          vegaEmbed('#job-by-industry', spec, {"actions": true});
+        </script>
+        <p>Industry variation shows significant differences in multiple job-holding rates, with some sectors showing much higher propensity for workers to hold multiple jobs.</p>
+      </section>
+      <footer class="pure-u-1 meta">
+        <p><strong>Data:</strong> ABS and Labour Force.</p>
+      </footer>
+    </main>
+  </div>
+</body>
+</html>

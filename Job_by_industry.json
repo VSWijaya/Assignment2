@@ -11,7 +11,7 @@
   },
   "width": 600,
   "height": 500,
-  "mark": {"type": "bar", "color": "darkblue"},
+  "mark": {"type": "bar", "color": "#1f77b4"},
   "encoding": {
     "y": {
       "field": "Industry",

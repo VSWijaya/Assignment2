@@ -9,8 +9,8 @@
   "data": {
     "url": "https://raw.githubusercontent.com/VSWijaya/Assignment2/refs/heads/main/job_by_ind.csv"
   },
-  "width": 600,
-  "height": 500,
+  "width": 500,
+  "height": 400,
   "mark": {"type": "bar", "color": "#1f77b4"},
   "encoding": {
     "y": {

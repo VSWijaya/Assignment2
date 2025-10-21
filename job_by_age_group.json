@@ -1,0 +1,31 @@
+{
+  "$schema": "https://vega.github.io/schema/vega-lite/v5.json",
+  "title": "Multiple Job-Holding Rate by Age Group",
+  "width": 500,
+  "height": 300,
+  "data": {
+    "url": "https://raw.githubusercontent.com/VSWijaya/Assignment2/refs/heads/main/job_by_age_group.csv"
+  },
+  "mark": {
+    "type": "bar",
+    "color": "lightsteelblue"
+  },
+  "encoding": {
+    "x": {
+      "field": "age",
+      "type": "ordinal",
+      "title": "Age Group",
+      "sort": null
+    },
+    "y": {
+      "field": "value",
+      "type": "quantitative",
+      "title": "Rate (%)",
+      "scale": {"domain": [0, 8]}
+    },
+    "tooltip": [
+      {"field": "age", "type": "nominal", "title": "Age Group"},
+      {"field": "value", "type": "quantitative", "title": "Rate (%)", "format": ".1f"}
+    ]
+  }
+}

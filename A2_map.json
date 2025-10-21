@@ -1,6 +1,6 @@
 {
   "$schema": "https://vega.github.io/schema/vega-lite/v5.json",
-  "description": "Choropleth map of Australian GCCSA regions using an Albers Equal Area projection.",
+  "description": "Choropleth map of Australian GCCSA regions that switches data by year.",
   "title": {
     "text": "Multiple Job-Holding Rate by Australian Region",
     "fontSize": 16,
@@ -15,6 +15,18 @@
     "center": [0, -27],
     "scale": 600
   },
+  "params": [
+    {
+      "name": "yearSelection",
+      "value": 2025,
+      "bind": {
+        "input": "select",
+        "options": [2023, 2024, 2025],
+        "labels": ["2023", "2024", "2025"],
+        "name": "Select Year: "
+      }
+    }
+  ],
   "data": {
     "url": "https://raw.githubusercontent.com/cartdeco/Australia-json-data/master/ABS_GCCSA_2011.json",
     "format": {"type": "topojson", "feature": "ABS_GCCSA_2011"}
@@ -24,11 +36,38 @@
       "lookup": "properties.GCC_NAME11",
       "from": {
         "data": {
-          "url": "https://raw.githubusercontent.com/VSWijaya/FIT3179-HW9/main/data.csv"
+          "url": "https://raw.githubusercontent.com/VSWijaya/Assignment2/refs/heads/main/rate_by_region_2023.csv"
         },
         "key": "Region",
         "fields": ["Rate"]
-      }
+      },
+      "as": ["Rate_2023"]
+    },
+    {
+      "lookup": "properties.GCC_NAME11",
+      "from": {
+        "data": {
+          "url": "https://raw.githubusercontent.com/VSWijaya/Assignment2/refs/heads/main/rate_by_region_2024.csv"
+        },
+        "key": "Region",
+        "fields": ["Rate"]
+      },
+      "as": ["Rate_2024"]
+    },
+    {
+      "lookup": "properties.GCC_NAME11",
+      "from": {
+        "data": {
+          "url": "https://raw.githubusercontent.com/VSWijaya/Assignment2/refs/heads/main/rate_by_region_2025.csv"
+        },
+        "key": "Region",
+        "fields": ["Rate"]
+      },
+      "as": ["Rate_2025"]
+    },
+    {
+      "calculate": "yearSelection == 2023 ? datum.Rate_2023 : yearSelection == 2024 ? datum.Rate_2024 : datum.Rate_2025",
+      "as": "Rate"
     }
   ],
   "layer": [

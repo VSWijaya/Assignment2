@@ -1,0 +1,32 @@
+{
+  "$schema": "https://vega.github.io/schema/vega-lite/v5.json",
+  "title": "Multiple Job-Holding Rate by Occupation",
+  "width": 400,
+  "height": 400,
+  "data": {
+    "url": "https://raw.githubusercontent.com/VSWijaya/Assignment2/refs/heads/main/job_by_occupation.csv"
+  },
+  "mark": {
+    "type": "arc",
+    "innerRadius": 0,
+    "stroke": "white",
+    "strokeWidth": 2
+  },
+  "encoding": {
+    "theta": {
+      "field": "rate",
+      "type": "quantitative"
+    },
+    "color": {
+      "field": "Occupation",
+      "type": "nominal",
+      "legend": {"title": "Occupation"},
+      "scale": {"scheme": "tableau10"}
+    },
+    "tooltip": [
+      {"field": "Occupation", "type": "nominal", "title": "Occupation"},
+      {"field": "rate", "type": "quantitative", "title": "Rate (%)", "format": ".1f"}
+    ]
+  },
+  "view": {"stroke": null}
+}

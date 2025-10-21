@@ -14,9 +14,27 @@
       "parse": {"Date": "utc:%b-%y"}
     }
   },
+
+"params": [
+  {
+    "name": "minYear",
+    "value": 1994,
+    "bind": {"input": "range", "min": 1994, "max": 2024, "step": 1, "name": "From: "}
+  },
+  {
+    "name": "maxYear",
+    "value": 2024,
+    "bind": {"input": "range", "min": 1994, "max": 2024, "step": 1, "name": "To: "}
+  }
+],
+"transform": [
+  {"calculate": "year(datum.Date)", "as": "Year"},
+  {"filter": "datum.Year >= minYear && datum.Year <= maxYear"}
+],
+
   "layer": [
     {
-      "mark": {"type": "bar", "color": "#003f87", "opacity": 0.5, "tooltip": true},
+      "mark": {"type": "bar", "color": "#003f87", "opacity": 0.5},
       "encoding": {
         "x": {"field": "Date", "type": "temporal", "title": "Date"},
         "y": {
@@ -27,12 +45,12 @@
         },
         "tooltip": [
           {"field": "Date", "type": "temporal", "title": "Date"},
-          {"field": "Levels", "type": "quantitative", "title": "Population"}
+          {"field": "Levels", "type": "quantitative", "title": "Population ('000)"}
         ]
       }
     },
     {
-      "mark": {"type": "line", "point": {"color": "#e74c3c", "size": 25}, "color": "#e74c3c", "strokeWidth": 2.5, "tooltip": true},
+      "mark": {"type": "line", "color": "#e74c3c", "strokeWidth": 2.5, "point": {"filled": true, "color": "#e74c3c"}},
       "encoding": {
         "x": {"field": "Date", "type": "temporal"},
         "y": {
@@ -48,6 +66,7 @@
       }
     }
   ],
+
   "width": 600,
   "height": 400,
   "resolve": {"scale": {"y": "independent"}}

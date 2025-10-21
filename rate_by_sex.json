@@ -1,6 +1,6 @@
 {
   "$schema": "https://vega.github.io/schema/vega-lite/v5.json",
-  "description": "Line graph showing male vs female rates over time with custom colors and title",
+  "description": "Line graph showing male vs female rates over time with annotation of gender gap",
   "title": {
     "text": "Rates of Multiple Job-Holders by Sex (1994-2025)",
     "subtitle": "Source: ABS Labour Force Survey",
@@ -16,51 +16,93 @@
   },
 
   "params": [
-  {
-    "name": "minYear",
-    "value": 1994,
-    "bind": {"input": "range", "min": 1994, "max": 2024, "step": 1, "name": "From: "}
-  },
-  {
-    "name": "maxYear",
-    "value": 2024,
-    "bind": {"input": "range", "min": 1994, "max": 2024, "step": 1, "name": "To: "}
-  }
-],
+    {
+      "name": "minYear",
+      "value": 1994,
+      "bind": {"input": "range", "min": 1994, "max": 2024, "step": 1, "name": "From: "}
+    },
+    {
+      "name": "maxYear",
+      "value": 2024,
+      "bind": {"input": "range", "min": 1994, "max": 2024, "step": 1, "name": "To: "}
+    }
+  ],
   "transform": [
     {"fold": ["Males", "Females"], "as": ["Gender", "Rate"]},
     {"calculate": "year(datum.Date)", "as": "Year"},
     {"filter": "datum.Year >= minYear && datum.Year <= maxYear"}
   ],
-  "mark": {"type": "line", "point": true},
-  "encoding": {
-    "x": {
-      "field": "Date",
-      "type": "temporal",
-      "title": "Date",
-      "axis": {"format": "%b %Y"}
-    },
-    "y": {
-      "field": "Rate",
-      "type": "quantitative",
-      "title": "Rate (%)"
-    },
-    "color": {
-      "field": "Gender",
-      "type": "nominal",
-      "title": "Gender",
-      "legend": {"orient": "bottom"},
-      "scale": {
-        "domain": ["Males", "Females"],
-        "range": ["#1f77b4", "#e377c2"]
+  "layer": [
+    {
+      "mark": {"type": "line", "point": true},
+      "encoding": {
+        "x": {
+          "field": "Date",
+          "type": "temporal",
+          "title": "Date",
+          "axis": {"format": "%b %Y"}
+        },
+        "y": {
+          "field": "Rate",
+          "type": "quantitative",
+          "title": "Rate (%)"
+        },
+        "color": {
+          "field": "Gender",
+          "type": "nominal",
+          "title": "Gender",
+          "legend": {"orient": "bottom"},
+          "scale": {
+            "domain": ["Males", "Females"],
+            "range": ["#1f77b4", "#e377c2"]
+          }
+        },
+        "tooltip": [
+          {"field": "Date", "type": "temporal", "title": "Date"},
+          {"field": "Gender", "type": "nominal"},
+          {"field": "Rate", "type": "quantitative"}
+        ]
       }
     },
-    "tooltip": [
-      {"field": "Date", "type": "temporal", "title": "Date"},
-      {"field": "Gender", "type": "nominal"},
-      {"field": "Rate", "type": "quantitative"}
-    ]
-  },
+    {
+      "mark": {
+        "type": "rule",
+        "color": "gray",
+        "strokeDash": [4, 4]
+      },
+      "encoding": {
+        "x": {"datum": {"year": 2023, "month": 5, "date": 1}, "type": "temporal"}
+      }
+    },
+    {
+      "mark": {
+        "type": "text",
+        "align": "left",
+        "dx": 5,
+        "dy": -20,
+        "color": "gray",
+        "fontSize": 12
+      },
+      "encoding": {
+        "x": {"datum": {"year": 2023, "month": 5, "date": 1}, "type": "temporal"},
+        "y": {"datum": 6.8},
+        "text": {"value": "Persistent gender gap in rates"}
+      }
+    },
+    {
+      "mark": {
+        "type": "rule",
+        "color": "gray",
+        "strokeWidth": 1.5
+      },
+      "encoding": {
+        "x": {"datum": {"year": 2023, "month": 5, "date": 1}, "type": "temporal"},
+        "y": {"datum": 5.6},
+        "y2": {"datum": 7.5}
+      }
+    }
+  ],
+
   "width": 600,
   "height": 300
 }

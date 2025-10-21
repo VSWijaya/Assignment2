@@ -1,7 +1,7 @@
 {
   "$schema": "https://vega.github.io/schema/vega-lite/v5.json",
   "title": "Multiple Job-Holding Rate by Age Group",
-"width": 300,
+"width": 250,
 "height": 300,
   "data": {
     "url": "https://raw.githubusercontent.com/VSWijaya/Assignment2/refs/heads/main/job_by_age_group.csv"

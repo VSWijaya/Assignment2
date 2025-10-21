@@ -42,7 +42,7 @@
         "color": {
           "field": "Rate",
           "type": "quantitative",
-          "scale": {"scheme": "oranges"},
+          "scale": {"scheme": "tealblues"},
           "legend": {"title": "Rate (%)"}
         },
         "tooltip": [

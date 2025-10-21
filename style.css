@@ -39,7 +39,7 @@ h3 {
 }
 
 p {
-  max-width: 25ch;
+  max-width: 30ch;
   margin: 0 auto 1.5em;
   line-height: 1.7;
   justify-content: space-around;
@@ -78,6 +78,7 @@ p {
   margin-bottom: 25px;  /* Added to control spacing after intro */
 }
 
+
 .intro p {
   text-align: center;
   max-width: 45ch;
@@ -112,7 +113,14 @@ section {
   }
 }
 
-/* small caption text under charts */
+footer .text-box {
+  max-width: none !important;
+  width: 100% !important;
+  margin-left: 0 !important;
+  margin-right: 0 !important;
+}
+
+
 .caption {
   font-size: 0.95rem;
   color: #444;
@@ -120,7 +128,6 @@ section {
   margin-bottom: 18px;
 }
 
-/* aside card */
 .card {
   background: #fbfdff;
   border: 1px solid #eef2f8;
@@ -133,4 +140,8 @@ section {
 .small { 
   font-size: 0.85rem; 
   color: #666; 
+}
+
+.site-header {
+  margin-bottom: 0.5em;
 }

@@ -30,7 +30,7 @@
       "filter": "industryFilter == 'All' || datum.rank <= 10"
     }
   ],
-  "width": 500,
+  "width": 400,
   "height": 400,
   "mark": {"type": "bar", "color": "#1f77b4"},
   "encoding": {

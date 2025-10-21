@@ -1,8 +1,8 @@
 {
   "$schema": "https://vega.github.io/schema/vega-lite/v5.json",
   "title": "Multiple Job-Holding Rate by Occupation",
-  "width": 400,
-  "height": 400,
+"width": 300,
+"height": 250,
   "data": {
     "url": "https://raw.githubusercontent.com/VSWijaya/Assignment2/refs/heads/main/job_by_occupation.csv"
   },

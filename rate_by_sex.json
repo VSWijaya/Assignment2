@@ -14,8 +14,23 @@
       "parse": {"Date": "utc:%b-%y"}
     }
   },
+
+  "params": [
+  {
+    "name": "minYear",
+    "value": 1994,
+    "bind": {"input": "range", "min": 1994, "max": 2024, "step": 1, "name": "From: "}
+  },
+  {
+    "name": "maxYear",
+    "value": 2024,
+    "bind": {"input": "range", "min": 1994, "max": 2024, "step": 1, "name": "To: "}
+  }
+],
   "transform": [
-    {"fold": ["Males", "Females"], "as": ["Gender", "Rate"]}
+    {"fold": ["Males", "Females"], "as": ["Gender", "Rate"]},
+    {"calculate": "year(datum.Date)", "as": "Year"},
+    {"filter": "datum.Year >= minYear && datum.Year <= maxYear"}
   ],
   "mark": {"type": "line", "point": true},
   "encoding": {

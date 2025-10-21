@@ -1,6 +1,6 @@
 {
   "$schema": "https://vega.github.io/schema/vega-lite/v5.json",
-  "description": "Multiple job-holding rate by industry",
+  "description": "Multiple job-holding rate by industry with filter for Top 10 or All industries",
   "title": {
     "text": "Multiple Job-Holding Rate by Industry",
     "fontSize": 16,
@@ -9,6 +9,27 @@
   "data": {
     "url": "https://raw.githubusercontent.com/VSWijaya/Assignment2/refs/heads/main/job_by_ind.csv"
   },
+  "params": [
+    {
+      "name": "industryFilter",
+      "value": "Top 10",
+      "bind": {
+        "input": "select",
+        "options": ["Top 10", "All"],
+        "labels": ["Top 10 Industries", "All Industries"],
+        "name": "Show: "
+      }
+    }
+  ],
+  "transform": [
+    {
+      "window": [{"op": "rank", "as": "rank"}],
+      "sort": [{"field": "Rate", "order": "descending"}]
+    },
+    {
+      "filter": "industryFilter == 'All' || datum.rank <= 10"
+    }
+  ],
   "width": 500,
   "height": 400,
   "mark": {"type": "bar", "color": "#1f77b4"},
@@ -16,7 +37,7 @@
     "y": {
       "field": "Industry",
       "type": "nominal",
-      "sort": "-x",
+      "sort": {"field": "Rate", "order": "descending"},
       "title": "Industry"
     },
     "x": {

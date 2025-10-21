@@ -97,7 +97,7 @@
     }
   ],
 
-  "width": 600,
+  "width": 500,
   "height": 400,
   "resolve": {"scale": {"y": "independent"}}
 }

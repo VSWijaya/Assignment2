@@ -75,20 +75,22 @@
       }
     },
     {
-      "mark": {
-        "type": "text",
-        "align": "left",
-        "dx": 5,
-        "dy": -20,
-        "color": "gray",
-        "fontSize": 12
-      },
-      "encoding": {
-        "x": {"datum": {"year": 2023, "month": 5, "date": 1}, "type": "temporal"},
-        "y": {"datum": 6.8},
-        "text": {"value": "Persistent gender gap in rates"}
-      }
-    },
+  "mark": {
+    "type": "text",
+    "align": "right",
+    "dx": -10,
+    "dy": -30,
+    "color": "gray",
+    "fontSize": 12,
+    "fontStyle": "italic"
+  },
+  "encoding": {
+    "x": {"datum": {"year": 2023, "month": 5, "date": 1}, "type": "temporal"},
+    "y": {"datum": 7.6},
+    "text": {"value": "Persistent gender gap in rates"}
+  }
+}
+,
     {
       "mark": {
         "type": "rule",
